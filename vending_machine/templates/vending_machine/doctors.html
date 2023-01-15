@@ -1,0 +1,15 @@
+{% extends 'vending_machine/base_token.html' %}
+
+{% block body %}
+<body class="text-center">
+{% for doctor in doctors%}
+<h4>{{doctor.full_name}}</h4>    <br>
+{% endfor %}
+
+<form action="{% url 'token' %}" method="POST">
+    {% csrf_token %}
+    Please Select a Doctor for appointment(enter a digit) : <input name="doctor"> <br>
+    <button class="btn btn-primary" type="submit">Select</button>
+</form>
+</body>
+{% endblock %}

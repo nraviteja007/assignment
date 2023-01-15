@@ -1,0 +1,19 @@
+{% extends 'vending_machine/base_token.html' %}
+
+
+{% block body %}
+<body class="text-center">
+<h5>
+next token is :  {{doctor.next_token}}    <br>
+Present token is :  {{doctor.current_token}}    <br>
+avg waiting time for consultations is 10 mins
+
+<form action="{% url 'token_generation' %}" method="POST">
+    {% csrf_token %}
+    Please Click on Confirm button to create a token or Home button to go to Department page  <br>
+    <input type="hidden" name="doctor_id" id="" value="{{doctor.id}}">
+    <button  name="confirm" type="submit">Confirm</button>
+</form>
+</h5>
+</body>
+{% endblock %}

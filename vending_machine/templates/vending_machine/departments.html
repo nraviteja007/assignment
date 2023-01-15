@@ -1,0 +1,20 @@
+{% extends 'vending_machine/base_token.html' %}
+
+{% block body %}
+<body class="text-center">
+<h3 class="text" ><u>Departments</u></h3>
+{% for department in departments%}
+<h4 class="text-center mb-0">{{department.name}}</h4><br>
+{% endfor %}
+
+
+
+<form action="{% url 'doctors' %}" method="POST">
+    {% csrf_token %}
+    Please Select a Department(enter a digit) : <input name="department"> <br>
+    <button class="btn btn-primary" type="submit">Select</button>
+</form>
+
+</body>
+
+{% endblock %}
