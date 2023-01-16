@@ -26,8 +26,11 @@ def token(request):
         choosen_doctor = request.POST['doctor']
         confirm_doctor = Doctors.objects.get(serial_no__iexact = choosen_doctor)
         tokens = confirm_doctor.tokens
+        list_tokens = tokens.split(",")
+        total_num_tokens = len(list_tokens) -1
         context = {
             "doctor" : confirm_doctor,
+            "total_num_tokens":total_num_tokens,
         }
         return render(request,"vending_machine/token.html",context)
 
@@ -49,6 +52,7 @@ def token_generation(request):
         token_generate = token_dep + "-" + token_doctor + "-" + str(tokens_num)
         confirm_doctor.tokens += (token_generate + ",")
         confirm_doctor.save()
+
 
         context = {
             "doctor_name" : doctor_name,

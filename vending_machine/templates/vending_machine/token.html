@@ -4,8 +4,10 @@
 {% block body %}
 <body class="text-center">
 <h5>
-next token is :  {{doctor.next_token}}    <br>
-Present token is :  {{doctor.current_token}}    <br>
+    Total tokens : {{total_num_tokens}}  <br>
+    Tokens : {{doctor.tokens}}  <br>
+next token to call:  {{doctor.next_token}}    <br>
+Present token called:  {{doctor.current_token}}    <br>
 avg waiting time for consultations is 10 mins
 
 <form action="{% url 'token_generation' %}" method="POST">

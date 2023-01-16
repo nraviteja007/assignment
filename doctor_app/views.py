@@ -49,7 +49,8 @@ def current_token(request,doctor_id):
     if len(token_list) > 0:
         current_token = token_list[0]
     confirm_doctor.current_token = current_token
-    confirm_doctor.next_token = ""
+    next_token_index = token_list.index(current_token)
+    confirm_doctor.next_token = token_list[next_token_index + 1]
     confirm_doctor.save()
     total_tokens = len(token_list)
     context = {
@@ -68,11 +69,14 @@ def next_token(request,doctor_id,current_token):
     tokens = confirm_doctor.tokens
     list_tokens=confirm_doctor.tokens.split(",")
     current = list_tokens.index(current_token)
+    print(current)
     confirm_doctor.current_token = list_tokens[current+1]
     confirm_doctor.next_token = list_tokens[current+2]
     confirm_doctor.save()
+    print(confirm_doctor.next_token)
     current_token = confirm_doctor.current_token
     next_token = confirm_doctor.next_token
+    print(next_token)
     total_tokens = len(tokens)
     context = {
         "doctor_obj": confirm_doctor,
